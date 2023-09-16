@@ -1,0 +1,11 @@
+DATABASE NAME : krishna_medical_store
+
+TABLE 1 : staff_login
+
+    COLUMN 1 : staff_id int(5)
+    COLUMN 2 : password varchar(10)
+
+TABLE 2 : admin_login
+
+    COLUMN 1 : admin_id int(5)
+    COLUMN 2 : password varchar(10)
