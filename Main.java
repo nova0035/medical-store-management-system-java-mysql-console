@@ -115,6 +115,7 @@ public class Main {
                         System.out.println("\nAdmin Menu");
                         System.out.println("\n1. Change Password");
                         System.out.println("2. Add New Medicine");
+                        System.out.println("3. Show All Medicine Data");
                         System.out.println("0. Exit");
 
                         System.out.print("\n_ : ");
@@ -164,6 +165,12 @@ public class Main {
 
                             // Call the addNewMedicine method with the modified manufacturer name, modified medicine name, and other arguments
                             stock.addNewMedicine(modifiedManufacturerName, modifiedMedicineName, power, price_per_tablet, quantity);
+
+                        }
+                        else if (adminMenuChoice == 3){
+
+                            System.out.println("\nAll Medicine Data");
+                            stock.showAllMedicineData();
 
                         }
                         else if (adminMenuChoice == 0) {
