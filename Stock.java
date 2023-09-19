@@ -50,4 +50,53 @@ public class Stock {
             e.printStackTrace();
         }
     }
+
+    void showAllMedicineData() {
+        try {
+            // Establish a database connection
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/krishna_medical_store", "root", "");
+    
+            // Create a statement to execute SQL queries
+            Statement stmt = conn.createStatement();
+    
+            // Execute the SQL query to select all data from the stock_data table
+            ResultSet medicine_data_table = stmt.executeQuery("SELECT * FROM stock_data;");
+    
+            // Initialize variables to store column values
+            String manufacturer_name, medicine_name;
+            int power, price_per_tablet, quantity;
+    
+            // Check if there are rows in the result set
+            if (!medicine_data_table.isBeforeFirst()) {
+                System.out.println("\nNo Data Found -"); // Display a message if no data is found
+            } else {
+                // Display column headers
+                System.out.println("\nManufacturer Name   | Medicine Name     | Power       | Price Per Tablet | Quantity");
+    
+                // Iterate through the result set using a while loop
+                while (medicine_data_table.next()) {
+                    // Retrieve values from the result set
+                    manufacturer_name = medicine_data_table.getString(1);
+                    medicine_name = medicine_data_table.getString(2);
+                    power = medicine_data_table.getInt(3);
+                    price_per_tablet = medicine_data_table.getInt(4);
+                    quantity = medicine_data_table.getInt(5);
+    
+                    // Define the format for displaying medicine data as a table
+                    String format = "\n%-19s | %-17s | %-11d | %-16d | %-8d";
+    
+                    // Use String.format() to format and display the data
+                    System.out.println(String.format(format, manufacturer_name, medicine_name, power, price_per_tablet, quantity));
+                }
+            }
+    
+            // Close the database connection
+            conn.close();
+    
+        } catch (SQLException e) {
+            // Handle SQL exceptions and print error messages
+            e.printStackTrace();
+            System.out.println("\nSQLException Occurred -");
+        }
+    }       
 }
