@@ -9,3 +9,11 @@ TABLE 2 : admin_login
 
     COLUMN 1 : admin_id int(5)
     COLUMN 2 : password varchar(10)
+
+TABLE 3 : stock_data
+
+    COLUMN 1 : manufacturer_name varchar(50)
+    COLUMN 2 : medicine_name varchar(50)
+    COLUMN 3 : power int(5)
+    COLUMN 4 : price_per_tablet int(5)
+    COLUMN 5 : quantity int(5)
