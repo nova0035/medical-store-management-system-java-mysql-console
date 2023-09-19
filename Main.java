@@ -51,13 +51,13 @@ public class Main {
                             System.out.println("\nChange Password");
             
                             // Prompt for user input
-                            System.out.print("Enter Your Staff Id : ");
+                            System.out.print("Enter Your Staff Id : "); // input staff id
                             String id = scanner.next();
 
-                            System.out.print("Enter Your Old Password : ");
+                            System.out.print("Enter Your Old Password : "); // input old password
                             String oldPassword = scanner.next();
-                            
-                            System.out.print("Enter Your New Password : ");
+
+                            System.out.print("Enter Your New Password : "); // input new password
                             String newPassword = scanner.next();
             
                             // Create a Staff object and call the changePassword method
@@ -66,14 +66,14 @@ public class Main {
                         }
 
                         else if (staffMenuChoice == 0) {
-                            System.out.println("\nExiting Staff Menu.");
+                            System.out.println("\nExiting Staff Menu."); // if user choose 0 to exit staff menu
                         }
 
                         else {
-                            System.out.println("\nInvalid choice. Please try again.");
+                            System.out.println("\nInvalid choice. Please try again."); // if user enter number other than in menu
                         }
 
-                    } while (staffMenuChoice != 0);
+                    } while (staffMenuChoice != 0); // loop breaks if user enter 0 which means exiting staff menu
 
                 }
                 else if (reply == 0) {
