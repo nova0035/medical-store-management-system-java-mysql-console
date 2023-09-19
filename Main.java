@@ -36,6 +36,45 @@ public class Main {
                 if (reply == 1) {
                     // Successful login
                     System.out.println("\nWelcome, Staff Member!");
+
+                    int staffMenuChoice = -1;
+
+                    do {
+
+                        System.out.println("\nStaff Menu");
+                        System.out.println("\n1. Change Password");
+                        System.out.println("0. Exit");
+                        System.out.print("\nSelect an option: ");
+                        staffMenuChoice = scanner.nextInt();
+            
+                        if (staffMenuChoice == 1) {
+                            System.out.println("\nChange Password");
+            
+                            // Prompt for user input
+                            System.out.print("Enter Your Staff Id : ");
+                            String id = scanner.next();
+
+                            System.out.print("Enter Your Old Password : ");
+                            String oldPassword = scanner.next();
+                            
+                            System.out.print("Enter Your New Password : ");
+                            String newPassword = scanner.next();
+            
+                            // Create a Staff object and call the changePassword method
+                            Staff staff = new Staff();
+                            staff.changePassword(id, oldPassword, newPassword);
+                        }
+
+                        else if (staffMenuChoice == 0) {
+                            System.out.println("\nExiting Staff Menu.");
+                        }
+
+                        else {
+                            System.out.println("\nInvalid choice. Please try again.");
+                        }
+
+                    } while (staffMenuChoice != 0);
+
                 }
                 else if (reply == 0) {
                     // Incorrect password
