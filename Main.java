@@ -21,7 +21,7 @@ public class Main {
 
             // Process user choice
             if (mainMenuChoice == 1) {
-
+                // Staff Member Login
                 System.out.println("\nStaff Member Login");
 
                 System.out.print("\nEnter Staff ID: ");
@@ -32,7 +32,7 @@ public class Main {
 
                 int reply = login.staffLogin(staffId, password);
 
-                // Add conditions based on reply
+                // Handle login responses
                 if (reply == 1) {
                     // Successful login
                     System.out.println("\nWelcome, Staff Member!");
@@ -40,17 +40,18 @@ public class Main {
                     int staffMenuChoice = -1;
 
                     do {
-
+                        // Staff Menu
                         System.out.println("\nStaff Menu");
                         System.out.println("\n1. Change Password");
                         System.out.println("0. Exit");
 
                         System.out.print("\n_ : ");
                         staffMenuChoice = scanner.nextInt();
-            
+
                         if (staffMenuChoice == 1) {
+                            // Change Password
                             System.out.println("\nChange Password");
-            
+
                             // Prompt for user input
                             System.out.print("Enter Your Staff Id : "); // input staff id
                             String id = scanner.next();
@@ -60,21 +61,19 @@ public class Main {
 
                             System.out.print("Enter Your New Password : "); // input new password
                             String newPassword = scanner.next();
-            
+
                             // Create a Staff object and call the changePassword method
                             Staff staff = new Staff();
                             staff.changePassword(id, oldPassword, newPassword);
                         }
-
                         else if (staffMenuChoice == 0) {
-                            System.out.println("\nExiting Staff Menu."); // if user choose 0 to exit staff menu
+                            System.out.println("\nExiting Staff Menu."); // if the user chooses 0 to exit staff menu
                         }
-
                         else {
-                            System.out.println("\nInvalid choice. Please try again."); // if user enter number other than in menu
+                            System.out.println("\nInvalid choice. Please try again."); // if the user enters a number other than in the menu
                         }
 
-                    } while (staffMenuChoice != 0); // loop breaks if user enter 0 which means exiting staff menu
+                    } while (staffMenuChoice != 0); // loop breaks if the user enters 0, which means exiting staff menu
 
                 }
                 else if (reply == 0) {
@@ -91,6 +90,7 @@ public class Main {
                 }
 
             } else if (mainMenuChoice == 2) {
+                // Admin Login
                 System.out.println("\nAdmin Login");
 
                 System.out.print("\nEnter Admin ID: ");
@@ -101,25 +101,29 @@ public class Main {
 
                 int reply = login.adminLogin(staffId, password);
 
-                // Add conditions based on reply
+                // Handle admin login responses
                 if (reply == 1) {
+                    Stock stock = new Stock();
+                    Admin admin = new Admin();
                     // Successful login
-                    System.out.println("\nWelcome, Admin !");
+                    System.out.println("\nWelcome, Admin!");
 
                     int adminMenuChoice = -1;
 
                     do {
-
+                        // Admin Menu
                         System.out.println("\nAdmin Menu");
-                    System.out.println("\n1. Change Password");
+                        System.out.println("\n1. Change Password");
+                        System.out.println("2. Add New Medicine");
                         System.out.println("0. Exit");
 
-                    System.out.print("\n_ : ");
-                            adminMenuChoice = scanner.nextInt();
-                
+                        System.out.print("\n_ : ");
+                        adminMenuChoice = scanner.nextInt();
+
                         if (adminMenuChoice == 1) {
-                        System.out.println("\nChange Password");
-                
+                            // Change Password
+                            System.out.println("\nChange Password");
+
                             // Prompt for user input
                             System.out.print("Enter Your Admin Id : "); // input admin id
                             String id = scanner.next();
@@ -129,28 +133,54 @@ public class Main {
 
                             System.out.print("Enter Your New Password : "); // input new password
                             String newPassword = scanner.next();
-                
-                            // Create a admin object and call the changePassword method
-                            Admin admin = new Admin();
+
+                            // Create an admin object and call the changePassword method
                             admin.changePassword(id, oldPassword, newPassword);
                         }
+                        else if (adminMenuChoice == 2) {
+                            // Add New Medicine
+                            System.out.println("\nAdd New Medicine");
 
+                            System.out.println("\nEnter Manufacturer Name : ");
+                            String manufacturer_name = scanner.nextLine();
+                            manufacturer_name += scanner.nextLine();
+
+                            System.out.print("\nEnter Medicine Name : ");
+                            String medicine_name = scanner.nextLine();
+                            medicine_name += scanner.nextLine();
+
+                            System.out.print("\nEnter Power ( if don't have power enter '0' ) : ");
+                            int power = scanner.nextInt();
+
+                            System.out.print("\nEnter Price Per Tablet : ");
+                            int price_per_tablet = scanner.nextInt();
+
+                            System.out.print("\nEnter Total Quantity : ");
+                            int quantity = scanner.nextInt();
+
+                            // Modify the manufacturer name and medicine name by converting to lowercase and trimming spaces
+                            String modifiedManufacturerName = manufacturer_name.toLowerCase().trim();
+                            String modifiedMedicineName = medicine_name.toLowerCase().trim();
+
+                            // Call the addNewMedicine method with the modified manufacturer name, modified medicine name, and other arguments
+                            stock.addNewMedicine(modifiedManufacturerName, modifiedMedicineName, power, price_per_tablet, quantity);
+
+                        }
                         else if (adminMenuChoice == 0) {
-                            System.out.println("\nExiting Admin Menu."); // if user choose 0 to exit admin menu
+                            System.out.println("\nExiting Admin Menu."); // if the user chooses 0 to exit admin menu
                         }
-
                         else {
-                            System.out.println("\nInvalid choice. Please try again."); // if user enter number other than in menu
+                            System.out.println("\nInvalid choice. Please try again."); // if the user enters a number other than in the menu
                         }
 
-                    } while (adminMenuChoice != 0); // loop breaks if user enter 0 which means exiting admin menu
+                    } while (adminMenuChoice != 0); // loop breaks if the user enters 0, which means exiting admin menu
                 }
                 else if (reply == 0) {
                     // Incorrect password
                     System.out.println("\nPassword is incorrect.");
                 }
                 else if (reply == -1) {
-                    // admin ID not found
+                    // Admin ID not found
                     System.out.println("\nAdmin ID not found.");
                 }
                 else if (reply == -2) {
@@ -161,7 +191,7 @@ public class Main {
             }
             else if (mainMenuChoice == 0) {
                 System.out.println("\nExiting the program. Goodbye!");
-            }
+            } 
             else {
                 System.out.println("\nInvalid choice. Please select a valid option (1/2/0).");
             }
