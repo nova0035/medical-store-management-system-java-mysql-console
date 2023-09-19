@@ -44,7 +44,8 @@ public class Main {
                         System.out.println("\nStaff Menu");
                         System.out.println("\n1. Change Password");
                         System.out.println("0. Exit");
-                        System.out.print("\nSelect an option: ");
+
+                        System.out.print("\n_ : ");
                         staffMenuChoice = scanner.nextInt();
             
                         if (staffMenuChoice == 1) {
@@ -82,17 +83,81 @@ public class Main {
                 }
                 else if (reply == -1) {
                     // Staff ID not found
-                    System.out.println("Staff ID not found.");
+                    System.out.println("\nStaff ID not found.");
                 }
                 else if (reply == -2) {
                     // SQL exception occurred
-                    System.out.println("An SQL exception occurred.");
+                    System.out.println("\nAn SQL exception occurred.");
                 }
 
             } else if (mainMenuChoice == 2) {
                 System.out.println("\nAdmin Login");
-                // Implement admin login logic here
-                // You can use a similar approach as for staff member login
+
+                System.out.print("\nEnter Admin ID: ");
+                int staffId = scanner.nextInt();
+
+                System.out.print("Enter Password: ");
+                String password = scanner.next();
+
+                int reply = login.adminLogin(staffId, password);
+
+                // Add conditions based on reply
+                if (reply == 1) {
+                    // Successful login
+                    System.out.println("\nWelcome, Admin !");
+
+                    int adminMenuChoice = -1;
+
+                    do {
+
+                        System.out.println("\nAdmin Menu");
+                    System.out.println("\n1. Change Password");
+                        System.out.println("0. Exit");
+
+                    System.out.print("\n_ : ");
+                            adminMenuChoice = scanner.nextInt();
+                
+                        if (adminMenuChoice == 1) {
+                        System.out.println("\nChange Password");
+                
+                            // Prompt for user input
+                            System.out.print("Enter Your Admin Id : "); // input admin id
+                            String id = scanner.next();
+
+                            System.out.print("Enter Your Old Password : "); // input old password
+                            String oldPassword = scanner.next();
+
+                            System.out.print("Enter Your New Password : "); // input new password
+                            String newPassword = scanner.next();
+                
+                            // Create a admin object and call the changePassword method
+                            Admin admin = new Admin();
+                            admin.changePassword(id, oldPassword, newPassword);
+                        }
+
+                        else if (adminMenuChoice == 0) {
+                            System.out.println("\nExiting Admin Menu."); // if user choose 0 to exit admin menu
+                        }
+
+                        else {
+                            System.out.println("\nInvalid choice. Please try again."); // if user enter number other than in menu
+                        }
+
+                    } while (adminMenuChoice != 0); // loop breaks if user enter 0 which means exiting admin menu
+                }
+                else if (reply == 0) {
+                    // Incorrect password
+                    System.out.println("\nPassword is incorrect.");
+                }
+                else if (reply == -1) {
+                    // admin ID not found
+                    System.out.println("\nAdmin ID not found.");
+                }
+                else if (reply == -2) {
+                    // SQL exception occurred
+                    System.out.println("\nAn SQL exception occurred.");
+                }
+
             }
             else if (mainMenuChoice == 0) {
                 System.out.println("\nExiting the program. Goodbye!");
