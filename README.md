@@ -1,7 +1,5 @@
 # Medical Store Management System (Console Application)
 
-![Medical Store](medical_store_image.png)
-
 A simple console-based Medical Store Management System implemented in Java with a MySQL database backend. This system allows users to manage staff members, medicines, and stock data for a medical store.
 
 ## Features
@@ -35,12 +33,6 @@ A simple console-based Medical Store Management System implemented in Java with 
 
 - Add a new staff member: Enter the staff member's details, including ID, password, name, contact information, and salary.
 - Add a new medicine: Enter medicine details, including manufacturer name, medicine name, power, price per tablet, and quantity.
-
-## Screenshots
-
-![Login Menu](login_menu.png)
-![Staff Menu](staff_menu.png)
-![Admin Menu](admin_menu.png)
 
 ## License
 
