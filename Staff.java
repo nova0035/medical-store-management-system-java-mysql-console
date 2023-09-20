@@ -112,5 +112,37 @@ public class Staff {
             System.out.println("\nSQLException Occurred: " + e.getMessage());
         }
     }
+
+    void removeStaffMember(int id){
+
+        try {
+
+            // Establish a database connection
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/krishna_medical_store", "root", "");
+            
+            // Create a statement to execute SQL queries
+            Statement stmt = conn.createStatement();
+
+            if(stmt.executeUpdate("DELETE FROM staff_data WHERE id = " + id + ";") == 1){
+
+                System.out.println("\nStaff Member Removed Successfully");
+
+                if(stmt.executeUpdate("DELETE FROM staff_login WHERE staff_id;") == 1){
+
+                    System.out.println("Id And Password Removed Too -");
+                }
+
+                else{
+                    System.out.println("\nId And Password Cannot Be Removed -");
+                }
+            }
+            else{
+                System.out.println("\nSTAFF ID NOT FOUND -");
+            }
+            
+        } catch (SQLException e) {
+            System.out.println("\nSQLException Occured -");
+        }
+    }
     
 }
