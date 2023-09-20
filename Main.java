@@ -105,6 +105,7 @@ public class Main {
                 if (reply == 1) {
                     Stock stock = new Stock();
                     Admin admin = new Admin();
+                    Staff staff = new Staff();
                     // Successful login
                     System.out.println("\nWelcome, Admin!");
 
@@ -116,6 +117,7 @@ public class Main {
                         System.out.println("\n1. Change Password");
                         System.out.println("2. Add New Medicine");
                         System.out.println("3. Show All Medicine Data");
+                        System.out.println("4. Add New Staff Member");
                         System.out.println("0. Exit");
 
                         System.out.print("\n_ : ");
@@ -171,6 +173,39 @@ public class Main {
 
                             System.out.println("\nAll Medicine Data");
                             stock.showAllMedicineData();
+
+                        }
+
+                        else if(adminMenuChoice == 4){
+
+                            System.out.println("\nAdd New Staff Member");
+
+                            System.out.print("\nSet Id ( Integer Only ) : ");
+                            int stfid = scanner.nextInt();
+
+                            System.out.print("\nSet Password : ");
+                            String stfpassword = scanner.next();
+
+                            System.out.print("\nEnter First Name : ");
+                            String first_name = scanner.next();
+
+                            System.out.print("\nEnter Last Name : ");
+                            String last_name = scanner.next();
+
+                            System.out.print("\nEnter Mobile Number : ");
+                            String mobile_number = scanner.next();
+
+                            System.out.print("\nEnter Email : ");
+                            String email = scanner.next();
+
+                            System.out.print("\nEnter Address : ");
+                            String address = scanner.nextLine();
+                            address += scanner.nextLine();
+
+                            System.out.print("\nSet Salary ( Without Comma ) : ");
+                            int salary = scanner.nextInt();
+
+                            staff.addNewStaffMember(stfid, stfpassword, first_name, last_name, mobile_number, email, address, salary);
 
                         }
                         else if (adminMenuChoice == 0) {
