@@ -118,6 +118,8 @@ public class Main {
                         System.out.println("2. Add New Medicine");
                         System.out.println("3. Show All Medicine Data");
                         System.out.println("4. Add New Staff Member");
+                        System.out.println("5. Remove Staff Member");
+                        System.out.println("6. Search Medicine Data");
                         System.out.println("0. Exit");
 
                         System.out.print("\n_ : ");
@@ -207,6 +209,41 @@ public class Main {
 
                             staff.addNewStaffMember(stfid, stfpassword, first_name, last_name, mobile_number, email, address, salary);
 
+                        }
+
+                        else if(adminMenuChoice == 5){
+                            System.out.println("\nRemove Staff Member");
+
+                            System.out.print("\nEnter Staff Id : ");
+                            int id = scanner.nextInt();
+
+                            System.out.print("\nAre You Sure You Wanna Remove Staff Id = " + id + " ( Y / n ) : ");
+                            String confirm = scanner.next();
+
+                            if(confirm.toLowerCase().equals("y")){
+                                staff.removeStaffMember(id);
+                            }
+                            else if(confirm.toLowerCase().equals("n")){
+                                System.out.println("\nRemoving Staff Member Canceled");
+                            }
+                            else{
+                                System.out.println("\nPlease Enter 'Y' To Confirm Or 'n' To Cancel");
+                            }
+                        }
+
+                        else if(adminMenuChoice == 6){
+                            System.out.println("\nSearch Medicine");
+
+                            System.out.print("\nEnter Medicine Name : ");
+                            String medicine_name = scanner.next();
+
+                            System.out.print("Enter Medicine Power ( Enter '0' For All Powers And Without Power Medicine ) : ");
+                            String medicine_power = scanner.next();
+
+                            medicine_name = medicine_name.trim();
+                            medicine_power = medicine_power.trim();
+
+                            stock.searchMedicine(medicine_name,medicine_power);
                         }
                         else if (adminMenuChoice == 0) {
                             System.out.println("\nExiting Admin Menu."); // if the user chooses 0 to exit admin menu
