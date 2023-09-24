@@ -171,80 +171,88 @@ public class Main {
                             stock.addNewMedicine(modifiedManufacturerName, modifiedMedicineName, power, price_per_tablet, quantity);
 
                         }
-                        else if (adminMenuChoice == 3){
-
+                        else if (adminMenuChoice == 3) {
+                            // Option 3: Display all Medicine Data
                             System.out.println("\nAll Medicine Data");
                             stock.showAllMedicineData();
-
                         }
-
-                        else if(adminMenuChoice == 4){
-
+                        
+                        else if (adminMenuChoice == 4) {
+                            // Option 4: Add a New Staff Member
                             System.out.println("\nAdd New Staff Member");
-
+                        
+                            // Collect staff member information from user
                             System.out.print("\nSet Id ( Integer Only ) : ");
                             int stfid = scanner.nextInt();
-
+                        
                             System.out.print("\nSet Password : ");
                             String stfpassword = scanner.next();
-
+                        
                             System.out.print("\nEnter First Name : ");
                             String first_name = scanner.next();
-
+                        
                             System.out.print("\nEnter Last Name : ");
                             String last_name = scanner.next();
-
+                        
                             System.out.print("\nEnter Mobile Number : ");
                             String mobile_number = scanner.next();
-
+                        
                             System.out.print("\nEnter Email : ");
                             String email = scanner.next();
-
+                        
+                            // Collect address with multiple lines
                             System.out.print("\nEnter Address : ");
                             String address = scanner.nextLine();
                             address += scanner.nextLine();
-
+                        
                             System.out.print("\nSet Salary ( Without Comma ) : ");
                             int salary = scanner.nextInt();
-
+                        
+                            // Add the new staff member to the staff database
                             staff.addNewStaffMember(stfid, stfpassword, first_name, last_name, mobile_number, email, address, salary);
-
                         }
-
-                        else if(adminMenuChoice == 5){
+                        
+                        else if (adminMenuChoice == 5) {
+                            // Option 5: Remove a Staff Member
                             System.out.println("\nRemove Staff Member");
-
+                        
+                            // Prompt for the staff member's ID to be removed
                             System.out.print("\nEnter Staff Id : ");
                             int id = scanner.nextInt();
-
+                        
+                            // Ask for confirmation
                             System.out.print("\nAre You Sure You Wanna Remove Staff Id = " + id + " ( Y / n ) : ");
                             String confirm = scanner.next();
-
-                            if(confirm.toLowerCase().equals("y")){
+                        
+                            if (confirm.toLowerCase().equals("y")) {
+                                // Remove the staff member if confirmed
                                 staff.removeStaffMember(id);
-                            }
-                            else if(confirm.toLowerCase().equals("n")){
+                            } else if (confirm.toLowerCase().equals("n")) {
                                 System.out.println("\nRemoving Staff Member Canceled");
-                            }
-                            else{
+                            } else {
                                 System.out.println("\nPlease Enter 'Y' To Confirm Or 'n' To Cancel");
                             }
                         }
-
-                        else if(adminMenuChoice == 6){
+                        
+                        else if (adminMenuChoice == 6) {
+                            // Option 6: Search for Medicine
                             System.out.println("\nSearch Medicine");
-
+                        
+                            // Prompt for medicine name and power
                             System.out.print("\nEnter Medicine Name : ");
                             String medicine_name = scanner.next();
-
+                        
                             System.out.print("Enter Medicine Power ( Enter '0' For All Powers And Without Power Medicine ) : ");
                             String medicine_power = scanner.next();
-
+                        
+                            // Trim any leading/trailing whitespace from inputs
                             medicine_name = medicine_name.trim();
                             medicine_power = medicine_power.trim();
-
-                            stock.searchMedicine(medicine_name,medicine_power);
+                        
+                            // Perform the search for medicine
+                            stock.searchMedicine(medicine_name, medicine_power);
                         }
+                                                
                         else if (adminMenuChoice == 0) {
                             System.out.println("\nExiting Admin Menu."); // if the user chooses 0 to exit admin menu
                         }
