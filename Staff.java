@@ -2,7 +2,6 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
 public class Staff {
     // Method to change the password for a staff member
     void changePassword(String staff_id, String oldPassword, String newPassword) {
@@ -20,18 +19,17 @@ public class Staff {
             if (!table.next()) {
                 System.out.println("\nStaff Member Not Found (Staff Id Not Found) -");
             }
-			else {
+            else {
                 // Compare the old password provided with the stored password
                 if (table.getString(2).equals(oldPassword)) {
                     // Update the password if the old password matches
                     if (stmt.executeUpdate("UPDATE staff_login SET password = " + newPassword + " WHERE staff_id = " + staff_id + ";") == 1) {
                         System.out.println("\nPassword Updated Successfully -");
                     }
-					else {
+                    else {
                         System.out.println("\nPassword Cannot Be Changed -");
                     }
-                }
-				else {
+                } else {
                     System.out.println("\nOld Password Is Not Matched -");
                 }
             }
@@ -45,6 +43,7 @@ public class Staff {
         }
     }
 
+    // Method to add a new staff member
     void addNewStaffMember(int id, String password, String first_name, String last_name, String mobile_number, String email, String address, int salary) {
         
         try {
@@ -59,7 +58,8 @@ public class Staff {
     
             if (table.next()) {
                 System.out.println("\nId Already Exists -");
-            } else {
+            }
+            else {
                 // Create a SQL statement to insert a new staff member into the staff_data table
                 PreparedStatement pstmt = conn.prepareStatement("INSERT INTO staff_data VALUES (?,?,?,?,?,?,?,?);");
     
@@ -96,10 +96,12 @@ public class Staff {
                     // Execute the insert query for login information and check if it was successful
                     if (pstmt2.executeUpdate() == 1) {
                         System.out.println("\nId And Password Set Successfully -");
-                    } else {
+                    }
+                    else {
                         System.out.println("\nId Password Cannot Be Set -");
                     }
-                } else {
+                }
+                else {
                     System.out.println("\nStaff Member Cannot Be Added");
                 }
             }
@@ -113,6 +115,7 @@ public class Staff {
         }
     }
 
+    // Method to remove a staff member
     void removeStaffMember(int id){
 
         try {
@@ -136,13 +139,13 @@ public class Staff {
                     System.out.println("\nId And Password Cannot Be Removed -");
                 }
             }
+
             else{
                 System.out.println("\nSTAFF ID NOT FOUND -");
             }
             
         } catch (SQLException e) {
-            System.out.println("\nSQLException Occured -");
+            System.out.println("\nSQLException Occurred -");
         }
     }
-    
 }
