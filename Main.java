@@ -120,10 +120,13 @@ public class Main {
                         System.out.println("4. Add New Staff Member");
                         System.out.println("5. Remove Staff Member");
                         System.out.println("6. Search Medicine Data");
+                        System.out.println("7. Increment Staff Member Salary");
                         System.out.println("0. Exit");
 
                         System.out.print("\n_ : ");
                         adminMenuChoice = scanner.nextInt();
+
+                        int stfid;
 
                         if (adminMenuChoice == 1) {
                             // Change Password
@@ -171,6 +174,7 @@ public class Main {
                             stock.addNewMedicine(modifiedManufacturerName, modifiedMedicineName, power, price_per_tablet, quantity);
 
                         }
+
                         else if (adminMenuChoice == 3) {
                             // Option 3: Display all Medicine Data
                             System.out.println("\nAll Medicine Data");
@@ -183,7 +187,7 @@ public class Main {
                         
                             // Collect staff member information from user
                             System.out.print("\nSet Id ( Integer Only ) : ");
-                            int stfid = scanner.nextInt();
+                            stfid = scanner.nextInt();
                         
                             System.out.print("\nSet Password : ");
                             String stfpassword = scanner.next();
@@ -218,18 +222,20 @@ public class Main {
                         
                             // Prompt for the staff member's ID to be removed
                             System.out.print("\nEnter Staff Id : ");
-                            int id = scanner.nextInt();
+                            stfid = scanner.nextInt();
                         
                             // Ask for confirmation
-                            System.out.print("\nAre You Sure You Wanna Remove Staff Id = " + id + " ( Y / n ) : ");
+                            System.out.print("\nAre You Sure You Wanna Remove Staff Id = " + stfid + " ( Y / n ) : ");
                             String confirm = scanner.next();
                         
                             if (confirm.toLowerCase().equals("y")) {
                                 // Remove the staff member if confirmed
-                                staff.removeStaffMember(id);
-                            } else if (confirm.toLowerCase().equals("n")) {
+                                staff.removeStaffMember(stfid);
+                            }
+                            else if (confirm.toLowerCase().equals("n")) {
                                 System.out.println("\nRemoving Staff Member Canceled");
-                            } else {
+                            }
+                            else {
                                 System.out.println("\nPlease Enter 'Y' To Confirm Or 'n' To Cancel");
                             }
                         }
@@ -251,6 +257,37 @@ public class Main {
                         
                             // Perform the search for medicine
                             stock.searchMedicine(medicine_name, medicine_power);
+                        }
+
+                        else if(adminMenuChoice == 7){
+                            System.out.println("Increment Staff Member Salary");
+
+                            System.out.print("Enter Staff Id : ");
+                            stfid = scanner.nextInt();
+                            
+                            int oldSalary = staff.getSalary(stfid);
+
+                            if(oldSalary!= -1 && oldSalary != -2){
+                                System.out.println("Current Salary = " + oldSalary);
+
+                                System.out.print("\nDo You Wanna Increment Salary (Y/n) ? : ");
+                                String confirm = scanner.next();
+                        
+                                if (confirm.toLowerCase().equals("y")) {
+
+                                    System.out.print("\nEnter Value To Be Increment In Salary : ");
+                                    int incrementalValue = scanner.nextInt();
+
+                                    staff.incrementSalary(stfid, incrementalValue);
+                                }
+                                else if (confirm.toLowerCase().equals("n")) {
+                                    System.out.println("\nSalary Incrementation Canceld");
+                                }
+                                else {
+                                    System.out.println("\nPlease Enter 'Y' To Confirm Or 'n' To Cancel");
+                                }
+                            }
+
                         }
                                                 
                         else if (adminMenuChoice == 0) {
