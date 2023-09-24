@@ -148,4 +148,70 @@ public class Staff {
             System.out.println("\nSQLException Occurred -");
         }
     }
+
+    // Method to increase the salary of staff members
+    void incrementSalary(int staffId, int incrementalValue) {
+
+        try {
+            // Establish a database connection
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/krishna_medical_store", "root", "");
+
+            // Create a statement to execute SQL queries
+            Statement stmt = conn.createStatement();
+
+            // Get the current salary for the specified staff member
+            int oldSalary = getSalary(staffId);
+
+            if (oldSalary == -1) {
+                // Staff ID not found
+                return;
+            }
+            // Calculate the new salary by adding the incrementalValue
+            int newSalary = oldSalary + incrementalValue;
+
+            // Update the staff member's salary in the database
+            if (stmt.executeUpdate("UPDATE staff_data SET salary = " + newSalary + " WHERE id = " + staffId + ";") == 1) {
+                // Salary updated successfully
+                System.out.println("\nSalary Incremented Successfully\nNew Salary = " + newSalary);
+            }
+            else {
+                // Failed to update salary
+                System.out.println("\nSalary Cannot Be Incremented");
+            }
+        }
+        catch (SQLException e) {
+            // Handle any SQL-related exceptions that may occur
+            System.out.println("\nSQLException Occurred");
+        }
+    }
+
+    int getSalary(int staffId) {
+
+        try {
+            // Establish a database connection
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/krishna_medical_store", "root", "");
+
+            // Create a statement to execute SQL queries
+            Statement stmt = conn.createStatement();
+
+            // Retrieve the current salary of the staff member with the provided staffId
+            ResultSet table = stmt.executeQuery("SELECT salary FROM staff_data WHERE id = " + staffId + ";");
+
+            if (!table.next()) {
+                // Staff ID not found in the database
+                System.out.println("\nStaff Id Not Found -");
+                return -1;
+            }
+            else {
+                // Return the current salary
+                return table.getInt(1);
+            }
+
+        }
+        catch (SQLException e) {
+            // Handle SQL exceptions
+            System.out.println("\nSQLException Occurred -");
+            return -2;
+        }
+    }
 }
