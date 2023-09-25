@@ -8,6 +8,10 @@ A simple console-based Medical Store Management System implemented in Java with 
 - **Staff Login**: Staff members can log in with their ID and password for authentication.
 - **Medicine Management**: Add new medicines to the stock database, including details such as manufacturer name, medicine name, power, price per tablet, and quantity.
 - **Display Medicine Data**: View all medicine data in a tabular format, including manufacturer name, medicine name, power, price per tablet, and quantity.
+- **Admin Menu**: Administrators can access additional features including changing passwords for staff members, adding new medicines, showing all medicine data, adding new staff members, removing staff members, searching for medicine data, and incrementing staff member salaries.
+
+This extended feature set provides administrators with enhanced control and management capabilities for the medical store.
+
 
 ## Technologies Used
 
@@ -17,7 +21,7 @@ A simple console-based Medical Store Management System implemented in Java with 
 
 ## Setup and Usage
 
-1. **Database Setup**: You need to have MySQL installed on your system. Create a database named "krishna_medical_store" and configure the connection details in your Java code.
+1. **Database Setup**: Ensure you have MySQL installed on your system. Create a database named "krishna_medical_store" and configure the connection details in your Java code.
 
 2. **Compile**: Compile the Java code using your preferred Java development environment or the command line.
 
@@ -31,6 +35,7 @@ A simple console-based Medical Store Management System implemented in Java with 
 
 ## Usage Examples
 
-- Add a new staff member: Enter the staff member's details, including ID, password, name, contact information, and salary.
-- Add a new medicine: Enter medicine details, including manufacturer name, medicine name, power, price per tablet, and quantity.
-  
+- **Add a New Staff Member**: Enter the staff member's details, including ID, password, name, contact information, and salary.
+- **Add a New Medicine**: Enter medicine details, including manufacturer name, medicine name, power, price per tablet, and quantity.
+
+Feel free to modify and expand this README to include any additional instructions, features, or usage examples as needed for your application.
