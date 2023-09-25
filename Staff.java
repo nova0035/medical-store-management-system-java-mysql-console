@@ -206,12 +206,59 @@ public class Staff {
                 // Return the current salary
                 return table.getInt(1);
             }
-
+    
         }
+
         catch (SQLException e) {
             // Handle SQL exceptions
             System.out.println("\nSQLException Occurred -");
             return -2;
         }
     }
+
+    void decrementSalary(int staffId, int decrementalValue) {
+        try {
+            // Establish a database connection
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/krishna_medical_store", "root", "");
+    
+            // Create a statement to execute SQL queries
+            Statement stmt = conn.createStatement();
+    
+            // Get the current salary for the specified staff member
+            int oldSalary = getSalary(staffId);
+    
+            if (oldSalary == -1) {
+                // Staff ID not found
+                System.out.println("\nStaff ID not found.");
+                return;
+            }
+    
+            int newSalary = oldSalary - decrementalValue;
+    
+            if (newSalary <= 0) {
+                // Check if the new salary would be zero or negative
+                System.out.println("\nAfter Decrement Salary = " + newSalary + "\nSalary Cannot Be Zero Or Negative");
+                return;
+            }
+    
+            // Update the salary in the database
+            int rowsUpdated = stmt.executeUpdate("UPDATE staff_data SET salary = " + newSalary + " WHERE id = " + staffId + ";");
+    
+            if (rowsUpdated == 1) {
+                // Salary updated successfully
+                System.out.println("\nSalary Decremented Successfully\nNew Salary = " + newSalary);
+            } else {
+                // Failed to update salary
+                System.out.println("\nSalary Cannot Be Decremented");
+            }
+    
+            // Close the database resources
+            stmt.close();
+            conn.close();
+
+        } catch (SQLException e) {
+            // Handle any SQLExceptions that may occur
+            System.out.println("\nSQLException Occurred - " + e.getMessage());
+        }
+    }    
 }
