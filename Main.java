@@ -121,6 +121,7 @@ public class Main {
                         System.out.println("5. Remove Staff Member");
                         System.out.println("6. Search Medicine Data");
                         System.out.println("7. Increment Staff Member Salary");
+                        System.out.println("8. Decrement Staff Member Salary");
                         System.out.println("0. Exit");
 
                         System.out.print("\n_ : ");
@@ -259,37 +260,74 @@ public class Main {
                             stock.searchMedicine(medicine_name, medicine_power);
                         }
 
-                        else if(adminMenuChoice == 7){
-                            System.out.println("Increment Staff Member Salary");
-
-                            System.out.print("Enter Staff Id : ");
+                        else if (adminMenuChoice == 7) {
+                            System.out.println("\nIncrement Staff Member Salary");
+                        
+                            // Prompt for and get the staff ID from the user
+                            System.out.print("\nEnter Staff Id : ");
                             stfid = scanner.nextInt();
-                            
+                        
+                            // Get the current salary for the specified staff member
                             int oldSalary = staff.getSalary(stfid);
-
-                            if(oldSalary!= -1 && oldSalary != -2){
+                        
+                            if (oldSalary != -1 && oldSalary != -2) {
                                 System.out.println("Current Salary = " + oldSalary);
-
+                        
+                                // Ask the user for confirmation to increment the salary
                                 System.out.print("\nDo You Wanna Increment Salary (Y/n) ? : ");
                                 String confirm = scanner.next();
                         
                                 if (confirm.toLowerCase().equals("y")) {
-
-                                    System.out.print("\nEnter Value To Be Increment In Salary : ");
+                                    // Prompt for and get the incremental value from the user
+                                    System.out.print("\nEnter Value To Be Incremented In Salary : ");
                                     int incrementalValue = scanner.nextInt();
-
+                        
+                                    // Call the method to increment the staff member's salary
                                     staff.incrementSalary(stfid, incrementalValue);
                                 }
                                 else if (confirm.toLowerCase().equals("n")) {
-                                    System.out.println("\nSalary Incrementation Canceld");
+                                    System.out.println("\nSalary Incrementation Canceled");
                                 }
                                 else {
                                     System.out.println("\nPlease Enter 'Y' To Confirm Or 'n' To Cancel");
                                 }
                             }
-
                         }
-                                                
+
+                        else if (adminMenuChoice == 8) {
+                            System.out.println("\nDecrement Staff Member Salary");
+                        
+                            // Prompt for and get the staff ID from the user
+                            System.out.print("\nEnter Staff Id : ");
+                            stfid = scanner.nextInt();
+                        
+                            // Get the current salary for the specified staff member
+                            int oldSalary = staff.getSalary(stfid);
+                        
+                            if (oldSalary != -1 && oldSalary != -2) {
+                                System.out.println("Current Salary = " + oldSalary);
+                        
+                                // Ask the user for confirmation to decrement the salary
+                                System.out.print("\nDo You Wanna Decrement Salary (Y/n) ? : ");
+                                String confirm = scanner.next();
+                        
+                                if (confirm.toLowerCase().equals("y")) {
+                                    // Prompt for and get the decremental value from the user
+                                    System.out.print("\nEnter Value To Be Decrement In Salary : ");
+                                    int decrementalValue = scanner.nextInt();
+                        
+                                    // Call the method to decrement the staff member's salary
+                                    staff.decrementSalary(staffId, decrementalValue);
+                                }
+                                else if (confirm.toLowerCase().equals("n")) {
+                                    System.out.println("\nSalary Decrement Canceled");
+                                }
+                                else {
+                                    System.out.println("\nPlease Enter 'Y' To Confirm Or 'n' To Cancel");
+                                }
+                            }
+                        }
+                                                                        
                         else if (adminMenuChoice == 0) {
                             System.out.println("\nExiting Admin Menu."); // if the user chooses 0 to exit admin menu
                         }
