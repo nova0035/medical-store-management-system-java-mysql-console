@@ -173,5 +173,45 @@ public class Stock {
             System.out.println("\nSQLException Occurred");
         }
     }
-     
+
+    void removeMedicineData(String medicine_name, int power) {
+        try {
+            // Establish a database connection
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/krishna_medical_store", "root", "");
+    
+            // Create a statement to execute SQL queries
+            Statement stmt = conn.createStatement();
+    
+            if (power == 0) {
+                // Enclose medicine_name in single quotes in the SQL query
+                String query = "DELETE FROM stock_data WHERE medicine_name = '" + medicine_name + "'";
+                int rowsAffected = stmt.executeUpdate(query);
+    
+                // Check if rows were affected by the DELETE operation
+                if (rowsAffected > 0) {
+                    System.out.println("\nMedicine Data Removed Successfully");
+                } else {
+                    System.out.println("\nMedicine Not Found");
+                }
+            } else {
+                // Enclose medicine_name in single quotes and add power as is in the SQL query
+                String query = "DELETE FROM stock_data WHERE medicine_name = '" + medicine_name + "' AND power = " + power;
+                int rowsAffected = stmt.executeUpdate(query);
+    
+                // Check if rows were affected by the DELETE operation
+                if (rowsAffected > 0) {
+                    System.out.println("\nMedicine Data Removed Successfully");
+                } else {
+                    System.out.println("\nMedicine Not Found");
+                }
+            }
+    
+            // Close the statement and the connection
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println("\nSQLException Occurred: " + e.getMessage());
+        }
+    }
+         
 }
