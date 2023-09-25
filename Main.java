@@ -122,6 +122,7 @@ public class Main {
                         System.out.println("6. Search Medicine Data");
                         System.out.println("7. Increment Staff Member Salary");
                         System.out.println("8. Decrement Staff Member Salary");
+                        System.out.println("9. Remove Medicine Data");
                         System.out.println("0. Exit");
 
                         System.out.print("\n_ : ");
@@ -150,7 +151,7 @@ public class Main {
                             // Add New Medicine
                             System.out.println("\nAdd New Medicine");
 
-                            System.out.println("\nEnter Manufacturer Name : ");
+                            System.out.print("\nEnter Manufacturer Name : ");
                             String manufacturer_name = scanner.nextLine();
                             manufacturer_name += scanner.nextLine();
 
@@ -327,6 +328,38 @@ public class Main {
                                 }
                             }
                         }
+
+                        else if (adminMenuChoice == 9) {
+                            // Display a message indicating that the user is about to remove medicine data
+                            System.out.println("\nRemove Medicine Data");
+                        
+                            // Prompt the user for medicine name and power
+                            System.out.print("\nEnter Medicine Name: ");
+                            String medicine_name = scanner.next();
+                            
+                            System.out.print("Enter Medicine Power (Enter '0' For All Powers And Without Power Medicine): ");
+                            int medicine_power = scanner.nextInt();
+                        
+                            // Prompt the user to confirm the removal
+                            System.out.print("\nDo You Wanna Remove Medicine Data (Y/n)? : ");
+                            String confirm = scanner.next();
+                            
+                            if (confirm.toLowerCase().equals("y")) {
+                                // If the user confirms, call the method to remove medicine data
+                                stock.removeMedicineData(medicine_name, medicine_power);
+                            }
+
+                            else if (confirm.toLowerCase().equals("n")) {
+                                // If the user declines, inform that the removal is canceled
+                                System.out.println("\nRemoving Medicine Canceled");
+                            }
+                            
+                            else {
+                                // If the user enters an invalid response, prompt them to enter 'Y' to confirm or 'n' to cancel
+                                System.out.println("\nPlease Enter 'Y' To Confirm Or 'n' To Cancel");
+                            }
+                        }
+                        
                                                                         
                         else if (adminMenuChoice == 0) {
                             System.out.println("\nExiting Admin Menu."); // if the user chooses 0 to exit admin menu
